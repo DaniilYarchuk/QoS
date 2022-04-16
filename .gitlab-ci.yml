@@ -1,0 +1,18 @@
+stages:
+   - ifconfig
+   - ping_test
+
+ ifconfig_job:
+     stage: ifconfig
+     tags:
+        - tag1
+     script:
+        - ifconfig
+
+ ping_test_job:
+     stage: ping_test
+     tags:
+        - tag1
+     script:
+        - ping 192.168.15.1
+
