@@ -1,2 +1,4 @@
-# first_rep
+This is first repository
+
+//Daniil Yarchuk
 
