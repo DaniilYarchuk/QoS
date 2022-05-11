@@ -21,7 +21,7 @@
         - ITGDec res.txt 
      artifacts:
        paths:
-        - configs
+        - result_generator.txt
 
  info_gather_job:
      stage: info_gather
