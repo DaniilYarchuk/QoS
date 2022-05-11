@@ -5,9 +5,6 @@
   gather_facts: false
    
   tasks:
-
-    - name: SETUP SHAPING ON ROUTER_1
-      block:
          - name: CREATE ACCESS-LIST FOR_WEB_TCP
            ios_config:
                    parents:
@@ -57,5 +54,4 @@
                    parents:
                          - interface e0/1
                    lines:
-                         - service-policy output OUT_E0/1   
-      when: inventory_hostname == "R2"
+                         - service-policy output OUT_E0/1
