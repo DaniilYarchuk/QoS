@@ -58,4 +58,4 @@
                          - interface e0/1
                    lines:
                          - service-policy output OUT_E0/1   
-      when: inventory_hostname == "R1"
+      when: inventory_hostname == "R2"
