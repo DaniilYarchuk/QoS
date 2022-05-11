@@ -1,29 +1,22 @@
  stages:
-   - apply_ansible
-   - test1
-   - test2
+   - apply_config
+   - test
 
- ifconfig_job:
-     stage: apply_ansible
+ ansible_job:
+     stage: apply_config
      tags:
         - tag1
      script:
         - ansible-playbook -i ansible/hosts QoS/shaping.yaml
 
- ping_test_job:
-     stage: test1
+ generator_traffic_job:
+     stage: test
      tags:
         - tag1
      script:
         - ITGSend tests/sh_flow
-
- ping_test_job2:
-     stage: test2
-     tags:
-        - tag1
-     script:
         - ansible-playbook -i ansible/hosts tests/test.yaml
-        - ITGDec result_tests/res1.txt > result_tests/res2.txt
+        - ITGDec result_tests/res1.txt > result_tests/result_generator.txt
         - ITGDec result_tests/res1.txt 
      artifacts:
        paths:
