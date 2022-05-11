@@ -23,8 +23,8 @@
         - tag1
      script:
         - ansible-playbook -i ansible/hosts tests/test.yaml
-        - ITGDec result_tests/res1.txt
         - ITGDec result_tests/res1.txt > result_tests/res1.txt
+        - ITGDec result_tests/res1.txt 
      artifacts:
        paths:
         - result_tests/res1.txt
