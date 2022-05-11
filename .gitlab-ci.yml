@@ -1,18 +1,20 @@
  stages:
-   - ifconfig
-   - ping_test
+   - apply_ansible
+   - test1
 
  ifconfig_job:
-     stage: ifconfig
+     stage: apply_ansible
      tags:
         - tag1
      script:
-        - ifconfig
+        - ansible-playbook -i ansible/hosts QoS/shaping.yaml
 
  ping_test_job:
-     stage: ping_test
+     stage: test1
      tags:
         - tag1
      script:
-        - ping 192.168.15.1 -c 5
+        - ITGSend tests/sh_flow
+
+
 
