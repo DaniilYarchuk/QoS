@@ -17,7 +17,7 @@
      script:
         - ITGSend tests/sh_flow
 
-  ping_test_job2:
+ ping_test_job2:
      stage: test2
      tags:
         - tag1
