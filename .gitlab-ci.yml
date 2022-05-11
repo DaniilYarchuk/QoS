@@ -7,20 +7,20 @@
      tags:
         - tag1
      script:
-        - ansible-playbook -i ansible/hosts QoS/shaping.yaml
+        - ansible-playbook -i ansible/hosts QoS/shaping/shaping.yaml
 
  generator_traffic_job:
      stage: test
      tags:
         - tag1
      script:
-        - ITGSend tests/sh_flow
-        - ansible-playbook -i ansible/hosts tests/test.yaml
-        - ITGDec result_tests/res1.txt > result_tests/result_generator.txt
-        - ITGDec result_tests/res1.txt
+        - ITGSend QoS/tests/sh_flow
+        - ansible-playbook -i ansible/hosts QoS/tests/copy.yaml
+        - ITGDec res.txt > result_generator.txt
+        - ITGDec res.txt
         - mkdir configs
-        - ansible-playbook -i ansible/hosts tests/info_gather.yaml 
+        - ansible-playbook -i ansible/hosts QoS/tests/info_gather.yaml 
      artifacts:
        paths:
-        - result_tests/result_generator.txt
+        - result_generator.txt
         - configs
