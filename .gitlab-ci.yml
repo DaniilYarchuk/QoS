@@ -20,4 +20,4 @@
         - ITGDec result_tests/res1.txt 
      artifacts:
        paths:
-        - result_tests/result_generator.txt.txt
+        - result_tests/result_generator.txt
