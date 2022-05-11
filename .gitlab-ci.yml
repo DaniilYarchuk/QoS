@@ -1,6 +1,7 @@
  stages:
    - apply_ansible
    - test1
+   - test2
 
  ifconfig_job:
      stage: apply_ansible
@@ -16,5 +17,11 @@
      script:
         - ITGSend tests/sh_flow
 
+  ping_test_job2:
+     stage: test2
+     tags:
+        - tag1
+     script:
+        - ansible-playbook -i ansible/hosts tests/test.yaml
 
 
