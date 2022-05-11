@@ -17,7 +17,10 @@
         - ITGSend tests/sh_flow
         - ansible-playbook -i ansible/hosts tests/test.yaml
         - ITGDec result_tests/res1.txt > result_tests/result_generator.txt
-        - ITGDec result_tests/res1.txt 
+        - ITGDec result_tests/res1.txt
+        - mkdir configs
+        - ansible-playbook -i ansible/hosts tests/info_gather.yaml 
      artifacts:
        paths:
         - result_tests/result_generator.txt
+        - configs

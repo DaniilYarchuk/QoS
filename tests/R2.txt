@@ -1,0 +1,151 @@
+Building configuration...
+
+Current configuration : 1689 bytes
+!
+! Last configuration change at 18:35:03 EET Wed May 11 2022 by admin
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router_2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$0a0v$K8BwFThEizOUOX6nuWyh5/
+!
+aaa new-model
+!
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+clock timezone EET 2 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+ip domain name domain.local
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+cts logging verbose
+!
+!
+username admin privilege 15 secret 5 $1$LtgG$Yjx4JiyF4X1gHJ0KJx5Nv0
+!
+redundancy
+!
+!
+!
+class-map match-all FOR_UDP
+ match access-group name FOR_UDP
+class-map match-all FOR_WEB_TCP
+ match access-group name FOR_WEB_TCP
+!
+policy-map OUT_E0/1
+ class FOR_WEB_TCP
+  shape average 150000   
+ class FOR_UDP
+  shape average 200000   
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ ip address 10.0.0.2 255.255.255.252
+!
+interface Ethernet0/1
+ ip address 192.168.16.1 255.255.255.0
+ service-policy output OUT_E0/1
+!
+interface Ethernet0/2
+ no ip address
+ shutdown
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 192.168.15.0 255.255.255.0 10.0.0.1
+!
+ip access-list extended FOR_UDP
+ permit udp any any range 16384 32767
+ip access-list extended FOR_WEB_TCP
+ permit tcp any any eq www
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ privilege level 15
+ transport input ssh
+!
+!
+end

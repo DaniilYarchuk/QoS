@@ -12,5 +12,5 @@
 
   - name: SAVE OUTPUT
     copy:
-      content: "{{config.stdout[]}}"
-      dest: "conf.txt"
+      content: "{{ config.stdout[0] }}"
+      dest: "{{ inventory_hostname }}.txt"
