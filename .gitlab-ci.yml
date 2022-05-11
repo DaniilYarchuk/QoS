@@ -23,5 +23,5 @@
         - tag1
      script:
         - ansible-playbook -i ansible/hosts tests/test.yaml
-        - ITGDec res1.txt
+        - ITGDec result_tests/res1.txt
 
