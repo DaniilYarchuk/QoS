@@ -1,6 +1,7 @@
  stages:
    - apply_config
    - test
+   - info_gather
 
  ansible_job:
      stage: apply_config
@@ -17,10 +18,18 @@
         - ITGSend QoS/tests/sh_flow
         - ansible-playbook -i ansible/hosts QoS/tests/copy.yaml
         - ITGDec res.txt > result_generator.txt
-        - ITGDec res.txt
-        - mkdir configs
-        - ansible-playbook -i ansible/hosts QoS/tests/info_gather.yaml 
+        - ITGDec res.txt 
      artifacts:
        paths:
-        - result_generator.txt
+        - configs
+
+ info_gather_job:
+     stage: info_gather
+     tags:
+        - tag1
+     script:
+        - mkdir configs
+        - ansible-playbook -i ansible/hosts QoS/tests/info_gather.yaml
+     artifacts:
+       paths:
         - configs
