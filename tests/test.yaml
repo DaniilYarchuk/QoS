@@ -6,6 +6,6 @@
 
   - name: COPY
     fetch:
-     src: "/home/pfne/result_tests/res1.txt"
+     src: "/root/result_tests/res1.txt"
      dest: "../result_tests/res1.txt"
      flat: yes
