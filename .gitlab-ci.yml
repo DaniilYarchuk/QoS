@@ -9,6 +9,9 @@
         - tag1
      script:
         - ansible-playbook -i ansible/hosts QoS/shaping.yaml
+     artifacts:
+       paths:
+        - QoS/shaping.yaml
 
  ping_test_job:
      stage: test1
