@@ -15,10 +15,12 @@
      tags:
         - tag1
      script:
+        - ansible-playbook -i ansible/hosts QoS/tests/start_gen.yaml
         - ITGSend QoS/tests/sh_flow
         - ansible-playbook -i ansible/hosts QoS/tests/copy.yaml
         - ITGDec res.txt > result_generator.txt
-        - ITGDec res.txt 
+        - ITGDec res.txt
+        - ansible-playbook -i ansible/hosts QoS/tests/kill_gen.yaml 
      artifacts:
        paths:
         - result_generator.txt
