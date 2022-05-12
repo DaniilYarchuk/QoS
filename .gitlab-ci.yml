@@ -29,6 +29,7 @@
         - tag1
      script:
        - ansible-playbook -i ansible/hosts QoS/shaping/test.yaml
+
  info_gather_job:
      stage: info_gather
      tags:
